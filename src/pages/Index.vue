@@ -13,7 +13,7 @@
             q-btn.q-ml-xl(color="secondary" rounded unelevated label="Quiero ser guía" @click="$router.push({name: 'register.guia'})")
           //- .col-lg-6.col-sm-12
           //-   | asdsa
-        .q-mt-xl.q-pt-xl.q-mx-md
+        .q-mt-xl.q-py-xl.q-mx-md
           .text-subtitle1.text-acento.text-grey-8.q-mb-md Te puede interesar visitar ...
           .row.q-col-gutter-lg
             .col-lg-6.col-xs-12(v-for="i in 4" :key="i")
