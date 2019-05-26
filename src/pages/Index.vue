@@ -18,6 +18,8 @@
           .row.q-col-gutter-lg
             .col-lg-6.col-xs-12(v-for="i in 4" :key="i")
               w-card-lugar
+          .text-center.q-my-md
+            q-btn(flat label="Ver más" color="secondary" @click="$router.push({name: 'lugar.index'})")
 
 </template>
 

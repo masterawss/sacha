@@ -1,7 +1,7 @@
 <template lang="pug">
     q-item
         q-item-section(avatar)
-            q-avatar
+            q-avatar(@click="$router.push({name: 'perfil'})")
                 img(src="https://cdn.quasar.dev/img/avatar2.jpg" alt="alt")
 
         q-item-section
