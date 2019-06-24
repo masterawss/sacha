@@ -1,16 +1,15 @@
 <template lang="pug">
-    q-card.shadow-w(unelecated @click="$router.push({name: 'lugar.show'})")
+    q-card.rounded.shadow-w(unelecated @click="$router.push({name: 'lugar.show', params: {id: lugar.id} })")
         q-card-section
-            .row.q-col-gutter-md
+            .row.q-col-gutter-md.justify-end
                 .col-5
                     q-img.img-rounded(
-                        src="https://placeimg.com/500/300/nature"
-                        spinner-color="white"
-                        style="height: 140px; max-width: 150px")
-                .col-7
-                    .text-subtitle1.text-acento.text-grey-8.q-mb-sm Lugar de destino
-                    .text-body2 Descripcion del lugars ad sad ads asdasdf sfd asdf asdf ewrfsdfadsf dg rthsdfhgds
-
+                        :ratio="10/9"
+                        :src="lugar.imagenes[0]"
+                        spinner-color="white")
+                .col-7.self-end
+                    .text-subtitle1.text-acento.text-grey-8.q-mb-sm {{ lugar.nombre }}
+                    .truncate.text-body2.text-grey-6(style="height:20px") {{ lugar.descripcion }}
                     .q-mt-md
                         q-icon.q-mr-sm(name="people")
                         | 12
@@ -19,6 +18,7 @@
 <script>
 import {QIcon} from 'quasar'
 export default {
+    props: ['lugar'],
     components: {QIcon}
 }
 </script>
@@ -29,5 +29,14 @@ export default {
     }
     .img-rounded{
         border-radius: 10px;
+    }
+    .rounded{
+        border-radius: 15px;
+    }
+    .truncate {
+        height: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>

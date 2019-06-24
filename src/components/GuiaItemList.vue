@@ -1,26 +1,47 @@
 <template lang="pug">
-    q-item(clickable v-ripple)
-        q-item-section(avatar)
-            q-avatar
-                img(src="https://miro.medium.com/fit/c/240/240/0*By9cHY3uwOM7kkny.")
-            
-        q-item-section
-            q-item-label Image avatar
-            q-item-label(caption line="2")
-                w-stars
-                strong Conozco muy bien el lugar
-        //- q-item-section(caption)
-            .row
-                .col-2(v-for="i in 5" )
-        q-item-section(side top)
-            q-icon(name="message" color="secondary")
+    q-list
+        .text-center.q-mt-xl(v-if="guias.length == 0")
+            .text-h5.text-grey No hay guías para este lugar
+        q-item( v-else clickable v-ripple v-for="guia in guias" :key="guia.id")
+            q-item-section(avatar)
+                q-avatar
+                    img(:src="guia.avatar")
+                
+            q-item-section(@click="$router.push({name: 'perfil.show', params: {id: guia.id} })")
+                q-item-label {{ guia.nombre }}
+                q-item-label(caption line="2")
+                    w-stars
+                    strong {{ guia.descripcion }}
+            //- q-item-section(caption)
+                .row
+                    .col-2(v-for="i in 5" )
+            q-item-section(side top)
+                q-icon(name="message" color="secondary")
 </template>
 
 <script>
 import WStars from './Stars'
 import { QAvatar } from 'quasar'
+import {db} from '../boot/db'
+// import { firestore } from 'firebase';
 export default {
-    components: { QAvatar, WStars }
+    props: ['lugar'],
+    components: { QAvatar, WStars },
+    created(){
+        console.log('GUIAs', this.guias);
+        
+    },
+    data:() => ({
+        guias: []
+    }),
+    firestore() {
+        let lugar = db.collection('lugares').doc(this.lugar.id)
+        console.log('LUGAR', this.lugar.id);
+        
+        return {
+            guias: lugar.collection('guias'),
+        }
+    }
 }
 </script>
 

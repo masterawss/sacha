@@ -1,0 +1,53 @@
+{
+    "lugares": [
+        {
+            "id": 1,
+            "imagen": "https://cde.peru.com//ima/0/0/8/6/7/867517/924x530/catarata-ahuashiyacu.jpg",
+            "caminata": 5,
+            "categoria": "Catarata",
+            "descripcion": "La catarata de Ahuashiyacu es una caída de agua situada en el distrito amazónico del departamento de San Martín, Perú. Se encuentra a una distancia de 14 kilómetros desde el centro de la ciudad más próxima, Tarapoto y se accede a ella en automóvil a través de la carretera Fernando Belaunde Terry en dirección a Yurimaguas. La catarata está ubicada dentro del Área de Conservación Regional Cordillera Escalera y debe su importancia a ser un conocido reclamo turístico y la cascada de mayor altura de toda la región de San Martín",
+            "distancia": 12.2,
+            "nombre": "Catarata Ahuashiyacu",
+            "ubicacion": "Tarapoto, Perú"
+        },
+        {
+            "id": 2,
+            "imagen": "https://s-ec.bstatic.com/images/hotel/max1024x768/171/171617794.jpg",
+            "caminata": 5,
+            "categoria": "Laguna",
+            "descripcion": "La Laguna Azul, también conocida como Laguna del Sauce se encuentra localizada en el distrito de Sauce dentro de la región de San Martín. Esta ocupa una extensión de 430, 80 hectáreas y se halla a una altura aproximada de 890 metros sobre el nivel del mar. Cuenta la historia, acerca de esta laguna, que hace muchos años llegaron cerca del lugar unos brujos a los que se conocía como machungos y que eran hombres muy viejos y enfermos. Estos hombres viejos murieron, pero dejaron descendientes. Se cuenta que un día, buscando qué cazar, un grupo de estos descendientes llegó hasta la Laguna Azul, se dice que la Laguna, como si fuera un ser vivo, al ver a estos hombres tan barbudos y pintados, se puso brava de tal manera que en sus aguas empezaba a aparecer oleaje además de diferentes arbustos de gran tamaño.",
+            "distancia": 12.2,
+            "nombre": "Laguna Azul",
+            "ubicacion": "Sauce, Perú"
+        },
+        {
+            "id": 3,
+            "imagen": "http://vacacionesydestinos.com.pe/wp-content/uploads/2018/02/cataratas-de-huacamaillo-3-800x600.jpg",
+            "caminata": 5,
+            "categoria": "Catarata",
+            "descripcion": "La catarata de Ahuashiyacu es una caída de agua situada en el distrito amazónico del departamento de San Martín, Perú. Se encuentra a una distancia de 14 kilómetros desde el centro de la ciudad más próxima, Tarapoto y se accede a ella en automóvil a través de la carretera Fernando Belaunde Terry en dirección a Yurimaguas. La catarata está ubicada dentro del Área de Conservación Regional Cordillera Escalera y debe su importancia a ser un conocido reclamo turístico y la cascada de mayor altura de toda la región de San Martín",
+            "distancia": 12.2,
+            "nombre": "Catarata Huacamaillo",
+            "ubicacion": "Tarapoto, Perú"
+        },
+        {
+            "id": 4,
+            "imagen": "",
+            "caminata": 5,
+            "categoria": "Catarata",
+            "descripcion": "La catarata de Ahuashiyacu es una caída de agua situada en el distrito amazónico del departamento de San Martín, Perú. Se encuentra a una distancia de 14 kilómetros desde el centro de la ciudad más próxima, Tarapoto y se accede a ella en automóvil a través de la carretera Fernando Belaunde Terry en dirección a Yurimaguas. La catarata está ubicada dentro del Área de Conservación Regional Cordillera Escalera y debe su importancia a ser un conocido reclamo turístico y la cascada de mayor altura de toda la región de San Martín",
+            "distancia": 12.2,
+            "nombre": "Catarata Ahuashiyacu",
+            "ubicacion": "Tarapoto, Perú"
+        },
+        {
+            "id": 5,
+            "caminata": 5,
+            "categoria": "Catarata",
+            "descripcion": "La catarata de Ahuashiyacu es una caída de agua situada en el distrito amazónico del departamento de San Martín, Perú. Se encuentra a una distancia de 14 kilómetros desde el centro de la ciudad más próxima, Tarapoto y se accede a ella en automóvil a través de la carretera Fernando Belaunde Terry en dirección a Yurimaguas. La catarata está ubicada dentro del Área de Conservación Regional Cordillera Escalera y debe su importancia a ser un conocido reclamo turístico y la cascada de mayor altura de toda la región de San Martín",
+            "distancia": 12.2,
+            "nombre": "Catarata Ahuashiyacu",
+            "ubicacion": "Tarapoto, Perú"
+        }
+    ]
+}

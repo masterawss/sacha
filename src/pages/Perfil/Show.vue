@@ -4,27 +4,59 @@
             .col-xs-12.col-sm-12.col-lg-10
                 .row.q-col-gutter-md
                     .col-lg-3.col-xl-3.col-md-12-col-sm-12.col-xs-12
-                        q-card.q-my-md.shadow-w
-                            q-card-section
-                                .text-center
-                                    q-avatar(size="90px")
-                                        q-img( src="https://miro.medium.com/fit/c/240/240/0*By9cHY3uwOM7kkny.")
-                                
-                                .text-center.q-mt-md
-                                    strong Nombre
-                                    br
-                                    span.text-grey @username
-                                    br
-                                    q-badge.q-ma-sm.q-pa-xs Explorador
-                    .col-lg-9.col-xl-9.col-md-12-col-sm-12.col-xs-12
-                        q-card.q-my-md.shadow-w
-                            q-card-section
+                        w-card-user.no-shadow(:usuario="usuario")
+                
+                q-tabs(
+                v-model="tab"
+                dense
+                swipeable
+                active-color="primary"
+                indicator-color="primary"
+                align="justify"
+                narrow-indicator)
+                    q-tab(name="lugares" label="Lugares")
+                    q-tab(name="incursiones" label="Incursiones")
+                q-tab-panels(v-model="tab" animated)
+                    q-tab-panel(name="lugares")
+                        .text-h6 Lugares
+                        | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    q-tab-panel(name="incursiones")
+                        //- .text-h6 Incursiones
+                        //- | {{ incursiones }}
+                        w-card-incursion.q-my-sm(:incursion="incursion" v-for="incursion in incursiones" :key="incursion.id")
+                    //- .col-lg-9.col-xl-9.col-md-12-col-sm-12.col-xs-12
+                        div(v-if="lugares.length > 0")
+                            .text-grey-7.q-ma-md Lugares que conoce:
+                            div(v-for="lugar in lugares" :key="lugar.id")
+                                w-card-lugar.shadow-w.q-ma-sm( :lugar="lugar")
+                        .text-center.text-grey(v-else)
+                            .q-my-xl No se registró visitas
+                    
+                        
 </template>
 
 <script>
-import { QAvatar, QBadge } from 'quasar'
+import { QAvatar, QBadge, QTab, QTabs, QTabPanel, QTabPanels } from 'quasar'
+import WCardLugar from '../../components/CardLugar'
+import WCardUser from './components/CardUser'
+import WCardIncursion from '../../components/CardIncursion'
+import {db} from '../../boot/db'
 export default {
-    components: { QAvatar, QBadge }
+    components: { QAvatar, QBadge, WCardLugar, WCardUser, QTab, QTabs, QTabPanel, QTabPanels, WCardIncursion },
+    firestore(){
+        let query =  db.collection('usuarios').doc(this.$route.params.id)
+        return {
+            usuario: query,
+            lugares: query.collection('lugares'),
+            incursiones: db.collection('incursiones').where('usuario.uid', '==', 'qIHF57iWFtapg7h1MOWuhSEy6Tr1')
+        }
+    },
+    data: () => ({
+        tab: 'lugares',
+        usuario: {},
+        lugares: [],
+        incursiones: []
+    })
 }
 </script>
 
