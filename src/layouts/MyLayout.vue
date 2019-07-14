@@ -4,25 +4,27 @@
       q-toolbar
         q-btn(flat='' dense='' round='' @click='leftDrawerOpen = !leftDrawerOpen' aria-label='Menu')
           q-icon(name='menu')
-        q-toolbar-title(@click="$router.push({name: 'lugar.index'})")
+        q-toolbar-title(@click="$router.push({name: 'index'})")
           w-logo
-        q-btn.q-mx-sm(v-if="!$q.screen.lt.lg" label="Lugares" @click="$router.push({name: 'lugar.index'})" flat no-caps)
+        q-btn.q-mx-sm(v-if="!$q.screen.lt.lg" label="Lugares" @click="$router.push({name: 'index'})" flat no-caps)
         q-btn.q-mx-sm(v-if="!$q.screen.lt.lg" label="Incursiones" flat no-caps)
 
         q-btn(v-if="loading" flat :loading="loading")
         q-btn(v-else-if="!currentUser" label="Iniciar sesión" rounded outline no-caps @click="openModalLogin")
-        q-btn(v-else flat no-caps )
-          q-avatar
-            img(:src="currentUser.photoURL")  
+        q-btn(v-else flat round no-caps @click="$router.push({name: 'perfil.show', params: { id: currentUser.uid} })" )
+          q-avatar(color="secondary")
+            img( v-if="currentUser.photoURL !== null " :src="currentUser.photoURL ")
+            div( v-else ) {{ currentUser.email[0] }}
+
           span.q-ml-sm(v-if="!$q.screen.lt.lg") {{ currentUser.displayName }}
-          q-menu(fit)
-            q-list(style="min-width: 100px")
-              q-item(clickable v-close-popup @click="$router.push({name: 'perfil.show', params: { id: currentUser.uid} })")
-                q-item-section Perfil
-              q-item(clickable v-close-popup)
-                q-item-section Configuración
-              q-item(clickable v-close-popup @click="logout")
-                q-item-section Cerrar sesión
+          //- q-menu(fit)
+          //-   q-list(style="min-width: 100px")
+          //-     q-item(clickable v-close-popup @click="$router.push({name: 'perfil.show', params: { id: currentUser.uid} })")
+          //-       q-item-section Perfil 
+          //-     q-item(clickable v-close-popup)
+          //-       q-item-section Configuración
+          //-     q-item(clickable v-close-popup @click="logout")
+          //-       q-item-section Cerrar sesión
         //- q-btn.q-mx-md(label="Registrarse"  rounded color="secondary" unelevated no-caps)
     w-drawer( v-if="$q.scr" :open="leftDrawerOpen")
     q-page-container

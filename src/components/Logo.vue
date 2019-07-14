@@ -1,5 +1,5 @@
 <template lang="pug">
-    .text-acento SachaTrip
+    .text-acento Rupi
 </template>
 
 <script>

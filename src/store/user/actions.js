@@ -14,7 +14,7 @@ export function signInAction(context, prov){
         var provider = new firebase.auth.GoogleAuthProvider()
         else if(prov == 'facebook')
         var provider = new firebase.auth.FacebookAuthProvider()
-        return firebase.auth().signInWithPopup(provider)
+        return firebase.auth().signInWithRedirect(provider)
     })
     .then( (result) => {
         context.commit('stateDialogLogin', false)
@@ -45,6 +45,7 @@ export function logout(context){
         console.log('Cerrando Sesión');
         
         context.commit('setUser', null)
+        Router().push({name: 'login'})
     }, function(error) {
     // An error happened.
     });

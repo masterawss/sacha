@@ -6,13 +6,9 @@
                     .col-lg-8.col-12
                         w-list-incursiones
                         .row
-                            .text-h6.q-ml-md Lugares
+                            .text-h6 Lugares
                             .col-lg-12.col-xs-12( v-for="(lugar, i) in lugares" )
-                                w-card-lugar.shadow-w.q-ma-sm(:lugar="lugar")
-                    //- .col-lg-4.col-12
-                        q-card.shadow-w
-                            q-card-section
-                                | asd
+                                w-card-lugar.shadow-w.q-my-sm(:lugar="lugar")
             .col-xs-12.col-sm-12.col-lg-9
             
 </template>

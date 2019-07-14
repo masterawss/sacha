@@ -1,42 +1,41 @@
 <template lang="pug">
-    q-layout
+q-layout
         q-page-container
-            q-toolbar.text-primary.bg-white
+            q-toolbar.text-white.bg-primary
                 q-btn(flat round dense icon="arrow_back" @click="$router.go(-1)")
                 q-toolbar-title 
                     .text-acento {{ lugar.nombre }}
             q-page
                 .row.justify-center
                     .col-xs-12.col-sm-12.col-lg-10
-                        q-scroll-area(horizontal style=" width: 100%;")
-                            .row.no-wrap
-                                div(v-for="(imagen, index) in lugar.imagenes" :key="index" )
-                                    div.q-ma-sm(style="width:200px")
-                                        q-img.rounded-borders(
-                                        :src="imagen"
-                                        :ratio="15/20")
+                        q-carousel(
+                        v-model="slide"
+                        swipeable
+                        animated
+                        arrows
+                        infinite
+                        autoplay
+                        transition-prev="slide-right"
+                        transition-next="slide-left")
+                            q-carousel-slide( v-for="(imagen, index) in lugar.imagenes" :key="index"
+                                :name="index" :img-src="imagen")
 
-                        q-card.no-shadow
+                        q-card
                             q-card-section(v-if="lugar")
                                 strong {{lugar.nombre}}
                                 .text-grey {{ lugar.ubicacion }}
                                 q-chip(dense color="red" text-color="white" ) Aventura
                                 q-chip(dense color="cyan" text-color="white" ) Acuático
                                 q-chip(dense color="green" text-color="white" ) Selva
+                                p {{ lugar.descripcion }}
 
-                                truncate.q-py-sm( action-class="text-blue" clamp="... Leer más" :length="125" less="Leer menos" :text="lugar.descripcion")
-
-                                w-scroll-guias
-
-                                .q-mt-sm
-                                    strong Ubicación
                                 gmap-map(:center="{ lat: lugar.position.latitude, lng: lugar.position.longitude  }"
                                 :zoom="13"
                                 :options="{ disableDefaultUi: true, streetViewControl: false, scaleControl: false, mapTypeControl: false, zoomControl: false, }"
-                                style="width: 100%; height: 100px")
+                                style="width: 100%; height: 200px")
                                     GmapMarker( :position="{ lat: lugar.position.latitude, lng: lugar.position.longitude  }")
                                 
-                                //- q-btn.full-width.shadow-w.q-my-md(label="Visitar" @click="$router.push({name:'lugar.visitar', params: { id: lugar.id } })" color="primary")
+                                q-btn.full-width.shadow-w.q-my-md(label="Visitar" @click="$router.push({name:'lugar.visitar', params: { id: lugar.id } })" color="primary")
                                 //- .row.justify-between
                                 //-     .col-lg-7.col-xs-12
                                 //-         .text-h6.text-acento.text-grey-7.q-my-md {{ lugar.nombre }}
@@ -54,12 +53,7 @@
 </template>
 
 <script>
-import { QAvatar, QCarousel,QCarouselSlide, QDialog, QCircularProgress, QChip, QScrollArea } from 'quasar'
-
-import truncate from 'vue-truncate-collapsed';
-
-import WScrollGuias from '../Index/components/ScrollGuias'
-
+import { QAvatar, QCarousel,QCarouselSlide, QDialog, QCircularProgress, QChip } from 'quasar'
 // import WComentario from '../../components/Comentario'
 // import WGuiaList from '../../components/GuiaItemList'
 import WListLugarIncursiones from '../../components/ListLugarIncursiones'
@@ -73,12 +67,9 @@ import firebase from 'firebase'
 export default {
     components: {
         QAvatar, 
-        truncate,
-        WScrollGuias,
         // WComentario, 
         // WGuiaList, 
         QCarousel,
-        QScrollArea,
         QCarouselSlide, 
         QDialog, 
         QChip,

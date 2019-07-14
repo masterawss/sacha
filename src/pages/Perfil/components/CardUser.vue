@@ -1,6 +1,9 @@
 <template lang="pug">
     q-card.q-my-lg-md.shadow-w
         q-card-section
+            .text-right
+                q-btn(flat round icon="settings" @click="$router.push({name: 'perfil.settings'})")
+                //- q-icon(name="settings" size="25px")
             .text-center
                 q-avatar(size="90px")
                     q-img( :src="usuario.avatar")
