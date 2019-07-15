@@ -7,11 +7,11 @@
                     q-toolbar-title
                         | Configuración
                 q-list( separator)
-                    q-item(clickable v-ripple)
-                        q-item-section Administrar
-                    q-item(clickable v-ripple)
+                    q-item(clickable v-ripple @click="$router.push({name: 'perfil.edit'})")
                         q-item-section Perfil
-                    q-item(clickable v-ripple)
+                    q-item(clickable v-ripple @click="$router.push({name: 'perfil.mis_lugares'})")
+                        q-item-section Administrar
+                    q-item(clickable v-ripple @click="$router.push({name: 'perfil.subscripcion'})")
                         q-item-section Mi subscripción
                     q-item(clickable v-ripple)
                         q-item-section Configuración

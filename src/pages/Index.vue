@@ -25,7 +25,7 @@ export default {
     },
     data: () => ({
         tab: 'lugares',
-    })
+    }),
     
 }
 </script>

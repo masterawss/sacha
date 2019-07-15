@@ -100,9 +100,9 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'Quasar App',
-        // short_name: 'Quasar-PWA',
-        // description: 'Best PWA App in town!',
+        name: 'Rupi',
+        short_name: 'Rupi',
+        description: 'Aplicación de viajes, obtén los mejores guías.',
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',

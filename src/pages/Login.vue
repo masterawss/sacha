@@ -8,13 +8,13 @@
                     img.q-px-xl(src="../statics/landing2.png" style="width:100%")
 
                 .q-mx-md.text-center
-                    q-input(label="Correo electrónico" v-model="email" ref="email" type="email"
+                    q-input(dense label="Correo electrónico" v-model="email" ref="email" type="email"
                         lazy-rules
                         :rules="[   val => val && val.length > 0 || 'Ingrese su correo electrónico' ]" )
-                    q-input(label="Contraseña" type="password" v-model="password" ref="password"
+                    q-input(dense label="Contraseña" type="password" v-model="password" ref="password"
                         lazy-rules
                         :rules="[   val => val && val.length > 0 || 'Ingrese su contraseña' ]" )
-                    q-btn.full-width.q-my-md(:loading="is_login_email_password_loading" unelevated label="Ingresar" @click="loginEmailPassword()" color="primary" rounded)
+                    q-btn.full-width(:loading="is_login_email_password_loading" unelevated label="Ingresar" @click="loginEmailPassword()" color="primary" rounded)
                     q-btn(  label="Regístrate aquí" @click="$router.push({name: 'signup'})" flat dense no-caps link color="secondary")
                     .text-grey O inicia sesión con:
                     .row.q-col-gutter-sm.q-mt-sm

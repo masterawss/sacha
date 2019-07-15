@@ -1,15 +1,16 @@
 <template lang="pug">
-    gmap-map(
-        :center="center"
-        :zoom="13"
-        :options="{ styles: styles[1], disableDefaultUi: true, streetViewControl: false, scaleControl: false, mapTypeControl: false, zoomControl: false, }"
-        :styles="styles[0]"
-        style="width: 100%; height: 85vh")
-            GmapMarker(
+    div
+        gmap-map(
+            :center="center"
+            :zoom="13"
+            :options="{ styles: styles[1], disableDefaultUi: true, streetViewControl: false, scaleControl: false, mapTypeControl: false, zoomControl: false, }"
+            :styles="styles[0]"
+            style="width: 100%; height: 85vh")
+                GmapMarker(
                 :key="index"
                 :icon="icon.unvisited"
                 v-for="(lugar, index) in lugares"
-                :position="{ lat: lugar.position.latitude, lng: lugar.position.longitude  }"
+                :position="lugar.position"
                 :clickable="true"
                 @click="$router.push({name: 'lugar.show', params: { id: lugar.id } })")
 </template>
@@ -43,24 +44,6 @@ export default {
             visited: '../statics/marker_icon_ready.png',
             unvisited: '../statics/marker_icon.png'
         },
-        markers: [
-            // {
-            //     id: 'fwnjtGmDbGYSLXBHm5uq',
-            //     status: 'visited',
-            //     position: {
-            //         lat: -6.0548775,
-            //         lng: -77.1639256
-            //     }
-            // },
-            // {
-            //     id: 'fwnjtGmDbGYSLXBHm5uq',
-            //     status: 'unvisited',
-            //     position: {
-            //         lat: -6.0648875,
-            //         lng: -77.1699256
-            //     }
-            // }
-        ]
     }),
     methods: {
         showPosition(position) {

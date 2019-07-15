@@ -5,11 +5,11 @@
         
         w-card-categorias
         
-        w-scroll-guias.q-ma-sm
+        w-scroll-guias.q-ma-sm(:guias="guias")
 
         w-scroll-lugar.q-ma-sm(:lugares="lugares" )
 
-        div.q-ma-sm
+        .q-ma-sm
             
         //- q-scroll-area(
         //-     horizontal
@@ -29,10 +29,12 @@ import {db} from '../../boot/db'
 export default {
     components: {QScrollArea,QInput, QImg, WScrollLugar, WScrollGuias, WInputBuscar, WCardCategorias},
     data: () => ({
-        lugares: []
+        lugares: [],
+        guias: []
     }),
     firestore: {
-        lugares: db.collection('lugares')
+        lugares: db.collection('lugares'),
+        guias: db.collection('usuarios').where('is_guia', '==', true)
     }
 }
 </script>

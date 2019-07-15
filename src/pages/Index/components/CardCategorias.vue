@@ -3,29 +3,25 @@
         q-card-section
             strong Categorías
             .row.q-mt-sm.q-col-gutter-sm
-                .col-4.text-center
-                    q-avatar(color="red" text-color="white" icon="directions")
-                    .text-caption Aventura
-                .col-4.text-center
-                    q-avatar(color="cyan" text-color="white" icon="directions")
-                    .text-caption Acuático
-                .col-4.text-center
-                    q-avatar(color="green" text-color="white" icon="directions")
-                    .text-caption Selva
-                .col-4.text-center
-                    q-avatar(color="indigo" text-color="white" icon="directions")
-                    .text-caption Altura
-                .col-4.text-center
-                    q-avatar(color="orange" text-color="white" icon="directions")
-                    .text-caption Desértico
-                .col-4.text-center
-                    q-avatar(color="teal" text-color="white" icon="directions")
-                    .text-caption Pacífico
+                .col-4.text-center(v-for="categoria in categorias" :key="categoria.id" @click="$router.push({name: 'lugares.lista', params:{categoria: categoria.nombre}})")
+                    q-avatar(:color="categoria.color" text-color="white" icon="directions")
+                    br
+                    small {{ categoria.nombre }}
+                
 </template>
 
 <script>
 export default {
-
+    data: () => ({
+        categorias: [
+            { id: 1, nombre: 'Aventura', color: 'red', },
+            { id: 2, nombre: 'Acuático', color: 'cyan', },
+            { id: 3, nombre: 'Selva', color: 'green', },
+            { id: 4, nombre: 'Altura', color: 'indigo', },
+            { id: 5, nombre: 'Desértico', color: 'orange', },
+            { id: 6, nombre: 'Pacífico', color: 'teal', },
+        ]
+    })
 }
 </script>
 

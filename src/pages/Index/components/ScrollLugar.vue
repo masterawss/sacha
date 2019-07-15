@@ -11,17 +11,15 @@
             .row.no-wrap
                 div(v-for="lugar in lugares" :key="lugar.id" class="q-pa-sm" @click="$router.push({name: 'lugar.show', params: { id:lugar.id } })")
                     div(style="width: 200px")
-                        q-img.rounded-border(
-                        :src="lugar.imagenes[0]"
-                        :ratio="20/10")
-                        strong {{lugar.nombre}}
+                        w-lugar-item-horizontal(:lugar="lugar")
 </template>
 
 <script>
 import {QScrollArea} from 'quasar'
+import WLugarItemHorizontal from './LugarItemHorizontal'
 export default {
-    components: {QScrollArea},
-    props: ['lugares']
+    components: {QScrollArea, WLugarItemHorizontal},
+    props: ['lugares'],
 }
 </script>
 

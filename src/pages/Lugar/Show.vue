@@ -10,7 +10,7 @@
                     .col-xs-12.col-sm-12.col-lg-10
                         q-scroll-area(horizontal style=" width: 100%;")
                             .row.no-wrap
-                                div(v-for="(imagen, index) in lugar.imagenes" :key="index" )
+                                div(v-for="(imagen, index) in imagenes" :key="index" )
                                     div.q-ma-sm(style="width:200px")
                                         q-img.rounded-borders(
                                         :src="imagen"
@@ -20,9 +20,7 @@
                             q-card-section(v-if="lugar")
                                 strong {{lugar.nombre}}
                                 .text-grey {{ lugar.ubicacion }}
-                                q-chip(dense color="red" text-color="white" ) Aventura
-                                q-chip(dense color="cyan" text-color="white" ) Acuático
-                                q-chip(dense color="green" text-color="white" ) Selva
+                                w-chip-categorias(:categorias="lugar.categorias")
 
                                 truncate.q-py-sm( action-class="text-blue" clamp="... Leer más" :length="125" less="Leer menos" :text="lugar.descripcion")
 
@@ -30,26 +28,12 @@
 
                                 .q-mt-sm
                                     strong Ubicación
-                                gmap-map(:center="{ lat: lugar.position.latitude, lng: lugar.position.longitude  }"
+                                gmap-map(:center="lugar.position"
                                 :zoom="13"
                                 :options="{ disableDefaultUi: true, streetViewControl: false, scaleControl: false, mapTypeControl: false, zoomControl: false, }"
                                 style="width: 100%; height: 100px")
-                                    GmapMarker( :position="{ lat: lugar.position.latitude, lng: lugar.position.longitude  }")
+                                    GmapMarker( :position="lugar.position")
                                 
-                                //- q-btn.full-width.shadow-w.q-my-md(label="Visitar" @click="$router.push({name:'lugar.visitar', params: { id: lugar.id } })" color="primary")
-                                //- .row.justify-between
-                                //-     .col-lg-7.col-xs-12
-                                //-         .text-h6.text-acento.text-grey-7.q-my-md {{ lugar.nombre }}
-                                //-         .row.justify-between.q-my-md
-                                //-             .col-6.text-center
-                                //-                 w-btn-conozco-lugar(:lugar="lugar")
-                                //-             .col-6.text-center
-                                //-                 w-btn-ver-guias(:lugar="lugar")
-                                //-                 w-btn-emitir-evento(:lugar="lugar")
-
-                                //-         w-list-lugar-incursiones(:lugar="lugar")
-                                //-         w-lugar-caracteristicas(:lugar="lugar")
-                                //-         .text-subtitle1.text-grey-8 {{ lugar.descripcion }}
                             q-circular-progress(v-else)
 </template>
 
@@ -68,6 +52,8 @@ import WBtnVerGuias from '../../components/BtnVerGuias'
 import WCardSerGuia from '../../components/CardSerGuia'
 import WBtnConozcoLugar from '../../components/BtnConozcoLugar'
 import WLugarCaracteristicas from './components/LugarCaracteristicas'
+import WChipCategorias from './components/ChipCategorias'
+
 import {db} from '../../boot/db'
 import firebase from 'firebase'
 export default {
@@ -83,6 +69,7 @@ export default {
         QDialog, 
         QChip,
         WCardSerGuia, 
+        WChipCategorias,
         QCircularProgress, 
         WBtnEmitirEvento, 
         WBtnVerGuias,
@@ -93,12 +80,27 @@ export default {
         usuario: {},
         lugar: null,
         slide: 1,
+        imagenes: []
     }),
-    firestore() {
-        return {
-            lugar: db.collection('lugares').doc(this.$route.params.id),
-        }
+    created () {
+        db.collection('lugares').doc(this.$route.params.id).get().then(r => {
+            this.lugar = r.data()
+            var storageRef = firebase.storage().ref();
+            Promise.all(
+                this.lugar.imagenes.map(imagen => {
+                    var spaceRef = storageRef.child(imagen).getDownloadURL().then(url => {
+                        
+                        this.imagenes.push(url)
+                    })
+                })
+            )
+        })
     },
+    // firestore() {
+    //     return {
+    //         lugar: db.collection('lugares').doc(this.$route.params.id),
+    //     }
+    // },
     methods: {
     }
 }
