@@ -14,8 +14,8 @@
                     q-input(dense label="Contraseña" type="password" v-model="password" ref="password"
                         lazy-rules
                         :rules="[   val => val && val.length > 0 || 'Ingrese su contraseña' ]" )
-                    q-btn.full-width(:loading="is_login_email_password_loading" unelevated label="Ingresar" @click="loginEmailPassword()" color="primary" rounded)
-                    q-btn(  label="Regístrate aquí" @click="$router.push({name: 'signup'})" flat dense no-caps link color="secondary")
+                    q-btn.full-width(:loading="is_login_email_password_loading" unelevated label="Ingresar" @click="loginEmailPassword()" color="primary" no-caps rounded)
+                    q-btn.full-width.q-my-sm(  label="Regístrate aquí" @click="$router.push({name: 'signup'})" outline rounded dense no-caps link color="primary")
                     .text-grey O inicia sesión con:
                     .row.q-col-gutter-sm.q-mt-sm
                             .col-lg-6.col-6

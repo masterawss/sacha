@@ -12,7 +12,7 @@
                     .text-h6.text-primary.text-acento Haz de Rupi tu lugar de trabajo.
 
                     p.text-grey ¿No estás seguro de ser un Ruper? Te regalemos tres meses gratis :)
-                    q-btn.q-mt-md( unelevated no-caps label="Quiero ser guía" color="primary" rounded @click="ser_guia")
+                    q-btn.q-mt-md( unelevated no-caps label="Quiero ser guía" color="primary" rounded @click="ser_guia" :loading="loading")
                 .text-center(v-else)
                     .text-h6.text-primary.text-acento.q-py-lg.q-mt-xl ¡Ya eres un Ruper!
                     p.text-grey Guía a las personas a grandes aventuras y sé parte de momentos inolvidables
@@ -23,7 +23,8 @@ import {db} from '../../boot/db'
 import firebase from 'firebase'
 export default {
     data: () => ({
-        is_guia: false
+        is_guia: false,
+        loading: false,
     }),
     created(){
         firebase.auth().onAuthStateChanged(user => {
@@ -42,13 +43,20 @@ export default {
     methods: {
         ser_guia(){
             // db.collection('usuarios').where('is_guia', '==', true)
+            this.loading = true
             firebase.auth().onAuthStateChanged(user => {
                 if(user){
                     db.collection('usuarios').doc(user.uid).add({
                         is_guia: true
                     }).then(r => {
+                        this.loading = false
                         this.$q.notify({message: '¡Felicidades, ya eres guía!'})
+                    }).catch(error => {
+                        this.loading = false
+                        this.$q.notify({message: '¡A ocurrido un error!'})
                     })
+                }else{
+                    this.$q.notify({message: 'Inicia sesión'})
                 }
             })
         }
